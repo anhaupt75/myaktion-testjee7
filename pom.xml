@@ -17,6 +17,37 @@
 			<artifactId>primefaces</artifactId>
 			<version>4.0</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+			<version>4.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+			<version>1.1.2.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.graphene</groupId>
+			<artifactId>graphene-webdriver</artifactId>
+			<scope>test</scope>
+			<type>pom</type>
+			<version>2.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-arquillian-container-remote</artifactId>
+			<scope>test</scope>
+			<version>8.1.0.Final</version>
+			<exclusions>
+	            <exclusion>
+	                <groupId>sun.jdk</groupId>
+	                <artifactId>jconsole</artifactId>
+	            </exclusion>
+	        </exclusions>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>my-aktion</finalName>
@@ -26,6 +57,24 @@
 				<artifactId>wildfly-maven-plugin</artifactId>
 				<version>1.0.1.Final</version>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.17</version>
+				<configuration>
+			        <systemPropertyVariables>
+			            <webdriver.chrome.driver>${webdriver.chrome}</webdriver.chrome.driver>
+			        </systemPropertyVariables>
+			    </configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<properties>
@@ -33,5 +82,6 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<webdriver.chrome>c:\Users\Andreas\javaee7_workshop\chromedriver.exe</webdriver.chrome>
 	</properties>
 </project>
