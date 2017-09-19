@@ -2,14 +2,14 @@ package de.dpunkt.myaktion.controller;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import de.dpunkt.myaktion.data.CampaignListProducer;
 import de.dpunkt.myaktion.data.CampaignProducer;
 
-@SessionScoped
+@ViewScoped
 @Named
 public class EditCampaignController  implements Serializable{
 

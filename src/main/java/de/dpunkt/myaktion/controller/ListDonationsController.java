@@ -2,10 +2,10 @@ package de.dpunkt.myaktion.controller;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-@SessionScoped
+@ViewScoped
 @Named
 public class ListDonationsController implements Serializable{
 

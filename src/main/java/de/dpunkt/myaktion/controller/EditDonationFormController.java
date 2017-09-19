@@ -2,21 +2,23 @@ package de.dpunkt.myaktion.controller;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 import de.dpunkt.myaktion.data.CampaignProducer;
 
-@SessionScoped
+@ViewScoped
 @Named
 public class EditDonationFormController implements Serializable{
 
 	private static final long serialVersionUID = 8465943451138841312L;
 	private String textColor = "000000";
 	private String bgColor = "ffffff";
+	
+	@Inject
+	private HttpServletRequest req;
 	
 	@Inject
 	private CampaignProducer campaignProducer;
@@ -26,8 +28,6 @@ public class EditDonationFormController implements Serializable{
 	}
 	
 	private String getAppUrl() {
-		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().
-				getExternalContext().getRequest();
 		String scheme = req.getScheme();
 		String serverName = req.getServerName();
 		int serverPort = req.getServerPort();
