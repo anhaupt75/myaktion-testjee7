@@ -7,6 +7,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.faces.context.FacesContext;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Dependent
 public class Resources {
@@ -23,4 +25,8 @@ public class Resources {
 	public FacesContext produceFacesContext() {
 		return FacesContext.getCurrentInstance();
 	}
+	
+	@Produces
+	@PersistenceContext
+	private EntityManager em;
 }
