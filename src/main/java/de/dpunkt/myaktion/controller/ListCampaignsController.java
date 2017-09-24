@@ -1,6 +1,7 @@
 package de.dpunkt.myaktion.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.event.Event;
 import javax.faces.view.ViewScoped;
@@ -9,6 +10,8 @@ import javax.inject.Named;
 
 import de.dpunkt.myaktion.data.CampaignProducer;
 import de.dpunkt.myaktion.model.Campaign;
+import de.dpunkt.myaktion.model.Donation;
+import de.dpunkt.myaktion.services.DonationService;
 import de.dpunkt.myaktion.util.Events.Deleted;
 
 @ViewScoped
@@ -22,6 +25,9 @@ public class ListCampaignsController implements Serializable {
 	
 	@Inject @Deleted
 	private Event<Campaign> campaignDeleteEvent;
+	
+	@Inject
+	private DonationService donationService;
 	
 	private Campaign campaignToDelete;
 	
@@ -41,6 +47,9 @@ public class ListCampaignsController implements Serializable {
 	}
 
 	public String doListDonations(Campaign campaign) {
+		final List<Donation> donations =
+				donationService.getDonations(campaign.getId());
+		campaign.setDonations(donations);
 		campaignProducer.setSelectedCampaign(campaign);
 		return Pages.LIST_DONATIONS;
 	}

@@ -30,23 +30,19 @@
 			<h:panelGrid columns="3">
 				<h:outputLabel value="#{msg['donateMoney.name']}" />
 				<p:inputText id="name" value="#{donateMoneyController.donation.donorName}" >
-					<f:validateRequired />
 				</p:inputText>
 				<p:message for="name" style="color: red;" />
 				<h:outputLabel value="#{msg['donateMoney.iban']}" />
 				<p:inputText id="iban" value="#{donateMoneyController.donation.account.iban}" >
-					<f:validateRequired />
 				</p:inputText>
 				<p:message for="iban" style="color: red;" />
 				<h:outputLabel value="#{msg['donateMoney.name_of_bank']}" />
 				<p:inputText id="name_bank" value="#{donateMoneyController.donation.account.nameOfBank}" >
-					<f:validateRequired />
 				</p:inputText>
 				<p:message for="name_bank" style="color: red;" />
 				<h:outputLabel value="#{msg['donateMoney.donation_amount']}" />
 				<h:panelGroup>
 					<p:inputText id="donationAmount" value="#{donateMoneyController.donation.amount}" >
-						<f:validateRequired />
 						<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
 					</p:inputText> EUR
 				</h:panelGroup>

@@ -13,6 +13,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import de.dpunkt.myaktion.model.Donation;
+import de.dpunkt.myaktion.model.Donation.Status;
+import de.dpunkt.myaktion.services.DonationService;
 
 @ViewScoped
 @Named
@@ -30,6 +32,9 @@ public class DonateMoneyController implements Serializable{
 	
 	@Inject
 	private Logger logger;
+	
+	@Inject 
+	private DonationService donationService;
 	
 	@PostConstruct
 	public void init() {
@@ -69,6 +74,9 @@ public class DonateMoneyController implements Serializable{
 	}
 	
 	public String doDonation() {
+		getDonation().setStatus(Status.IN_PROCESS);
+		donationService.addDonation(getCampaignId(), getDonation());
+		
 		logger.log(Level.INFO, "log.donateMoney.thank_you", new Object[] {
 				getDonation().getDonorName(), getDonation().getAmount()});
 		final ResourceBundle resourceBundle = facesContext.getApplication().

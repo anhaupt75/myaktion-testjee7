@@ -2,14 +2,14 @@ package de.dpunkt.myaktion.services;
 
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import de.dpunkt.myaktion.model.Campaign;
 
-@RequestScoped
+@Stateless
 public class CampaignServiceBean implements CampaignService{
 	
 	@Inject
@@ -21,6 +21,7 @@ public class CampaignServiceBean implements CampaignService{
 		TypedQuery<Campaign> query =
 				em.createNamedQuery(Campaign.findAll,Campaign.class);
 		List<Campaign> campaigns=query.getResultList();
+		campaigns.forEach(campaign->campaign.setAmountDonatedSoFar(getAmountDonatedSoFar(campaign)));
 		return campaigns;
 	}
 
@@ -40,6 +41,15 @@ public class CampaignServiceBean implements CampaignService{
 	public void updateCampaign(Campaign campaign) {
 		em.merge(campaign);
 		
+	}
+	private Double getAmountDonatedSoFar(Campaign campaign) {
+		TypedQuery<Double> query =
+				em.createNamedQuery(Campaign.getAmountDonatedSoFar,Double.class);
+		query.setParameter("campaign", campaign);
+		Double result=query.getSingleResult();
+		if (result == null)
+			result=0d;
+		return result;
 	}
 
 }
