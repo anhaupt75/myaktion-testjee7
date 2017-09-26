@@ -25,6 +25,7 @@ public class DonateMoneyITCase extends AbstractITCase{
 	
 	@Before
 	public void setupDatabase() {
+		login();
 		SetupDatabase.addCampaign(DataFactory.createTestCampaign());
 	}
 	

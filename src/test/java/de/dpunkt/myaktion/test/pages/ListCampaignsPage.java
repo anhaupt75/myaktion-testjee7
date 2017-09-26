@@ -7,7 +7,7 @@ import org.jboss.arquillian.graphene.page.Location;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-@Location("listCampaigns.jsf")
+@Location("organizer/listCampaigns.jsf")
 public class ListCampaignsPage extends AbstractPage{
 	
 	@FindBy(xpath="//tbody/tr[last()]/td[2]")
