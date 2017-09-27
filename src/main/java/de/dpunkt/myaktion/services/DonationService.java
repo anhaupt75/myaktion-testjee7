@@ -7,4 +7,5 @@ import de.dpunkt.myaktion.model.Donation;
 public interface DonationService {
 	List<Donation> getDonations(Long campaignId);
 	void addDonation(Long campaignId, Donation donation);
+	void transferDonations();
 }
