@@ -20,10 +20,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @NamedQueries({
-	@NamedQuery(name="Campaign.findByOrganizer",
+	@NamedQuery(name=Campaign.findByOrganizer,
 			query="SELECT c FROM Campaign c WHERE c.organizer = :organizer ORDER BY c.name"),
-	@NamedQuery(name="Campaign.findAll",query="SELECT c FROM Campaign c ORDER BY c.name"),
-	@NamedQuery(name="Campaign.getAmountDonatedSoFar", 
+	@NamedQuery(name=Campaign.findAll,query="SELECT c FROM Campaign c ORDER BY c.name"),
+	@NamedQuery(name=Campaign.getAmountDonatedSoFar, 
 		query="SELECT SUM(d.amount) FROM Donation d WHERE d.campaign = :campaign")
 })
 @Entity
