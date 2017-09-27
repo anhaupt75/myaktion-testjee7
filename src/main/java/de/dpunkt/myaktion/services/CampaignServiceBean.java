@@ -15,6 +15,8 @@ import de.dpunkt.myaktion.model.Organizer;
 
 @RolesAllowed("Organizer")
 @Stateless
+//@TransactionManagement(TransactionManagementType.BEAN)
+//@Interceptors(TransactionInterceptor.class)
 public class CampaignServiceBean implements CampaignService{
 	
 	@Inject
@@ -46,7 +48,6 @@ public class CampaignServiceBean implements CampaignService{
 		Organizer organizer=getLoggedInOrganizer();
 		campaign.setOrganizer(organizer);
 		em.persist(campaign);
-		
 	}
 
 	@Override
