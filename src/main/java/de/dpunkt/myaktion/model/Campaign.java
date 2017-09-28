@@ -18,6 +18,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @NamedQueries({
 	@NamedQuery(name=Campaign.findByOrganizer,
@@ -27,6 +28,7 @@ import javax.validation.constraints.Size;
 		query="SELECT SUM(d.amount) FROM Donation d WHERE d.campaign = :campaign")
 })
 @Entity
+@XmlRootElement
 public class Campaign {
 	
 	public static final String findByOrganizer = "Campaign.findByOrganizer";

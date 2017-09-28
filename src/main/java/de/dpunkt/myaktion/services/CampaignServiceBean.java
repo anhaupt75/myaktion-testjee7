@@ -44,10 +44,11 @@ public class CampaignServiceBean implements CampaignService{
 	}
 
 	@Override
-	public void addCampaign(Campaign campaign) {
+	public Campaign addCampaign(Campaign campaign) {
 		Organizer organizer=getLoggedInOrganizer();
 		campaign.setOrganizer(organizer);
 		em.persist(campaign);
+		return campaign;
 	}
 
 	@Override
@@ -57,10 +58,10 @@ public class CampaignServiceBean implements CampaignService{
 	}
 
 	@Override
-	public void updateCampaign(Campaign campaign) {
-		em.merge(campaign);
-		
+	public Campaign updateCampaign(Campaign campaign) {
+		return em.merge(campaign);
 	}
+	
 	private Double getAmountDonatedSoFar(Campaign campaign) {
 		TypedQuery<Double> query =
 				em.createNamedQuery(Campaign.getAmountDonatedSoFar,Double.class);
@@ -69,6 +70,17 @@ public class CampaignServiceBean implements CampaignService{
 		if (result == null)
 			result=0d;
 		return result;
+	}
+
+	@Override
+	public void deleteCampaign(Long campaignId) {
+		Campaign campaign=getCampaign(campaignId);
+		em.remove(campaign);
+	}
+
+	@Override
+	public Campaign getCampaign(Long campaignId) {
+		return em.find(Campaign.class, campaignId);
 	}
 
 }

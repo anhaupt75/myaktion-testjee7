@@ -63,8 +63,9 @@ public class MockCampaignServiceBean implements CampaignService {
 	}
 
 	@Override
-	public void addCampaign(Campaign campaign) {
+	public Campaign addCampaign(Campaign campaign) {
 		// TODO Auto-generated method stub
+		return null;
 		
 	}
 
@@ -75,9 +76,21 @@ public class MockCampaignServiceBean implements CampaignService {
 	}
 
 	@Override
-	public void updateCampaign(Campaign campaign) {
+	public Campaign updateCampaign(Campaign campaign) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteCampaign(Long campaignId) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Campaign getCampaign(Long campaignId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
