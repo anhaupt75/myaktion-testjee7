@@ -7,7 +7,7 @@
 			
 	<datasource pool-name="myaktion" jndi-name="java:jboss/datasources/MyAktionDS"
 		enabled="true" use-java-context="true">
-		<connection-url>jdbc:h2:file:~/data/myaktion</connection-url>
+		<connection-url>jdbc:h2:file:~/app-root/data/myaktion</connection-url>
 		<driver>h2</driver>
 		<security>
 			<user-name>sa</user-name>
